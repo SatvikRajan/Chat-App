@@ -3,11 +3,13 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const app = express()
 const userRoutes = require('../server/routes/UserRoutes')
+const messageRoute = require('./routes/MessagesRoute')
 require("dotenv").config()
 
 app.use(cors())
 app.use(express.json())
 app.use("/api/auth",userRoutes)
+app.use("/api/messages",messageRoute)
 async function main() {
     await mongoose.connect('mongodb://127.0.0.1:27017/chat');
     console.log('DB connected succesfully')

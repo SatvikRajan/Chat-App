@@ -7,6 +7,7 @@ import {ToastContainer,toast} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import axios from 'axios';
 import { registerRoute } from "../utils/ApiRoutes";
+
 export default function Register() {
   const navigate = useNavigate();
     const [values,setValues]=useState({
@@ -41,7 +42,7 @@ export default function Register() {
           if(data.status===true){
             localStorage.setItem('chat-app-user',JSON.stringify(data.user))
           }
-          navigate("/");
+          navigate("/setAvatar");
         }
       }
     const handleValidation = ()=>{
@@ -56,14 +57,14 @@ export default function Register() {
             toast.error("Username should be greater than 3 charactors",toastOptions)
             return false;
         }
-        else if(password.length<8){
-            toast.error("Password should be equal or greater than 8 characters",toastOptions)
-            return false;
-        }
         else if(email===""){
             toast.error("Email should not be empty",toastOptions)
             return false;
         } 
+        else if(password.length<8){
+            toast.error("Password should be equal or greater than 8 characters",toastOptions)
+            return false;
+        }
         return true;
       }
       const handleChange=(e)=>{

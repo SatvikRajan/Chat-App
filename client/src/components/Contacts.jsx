@@ -98,6 +98,7 @@ const Container = styled.div`
       }
     }
     .contact {
+      overflow: auto;
       background-color: #ffffff34;
       min-height: 5rem;
       cursor: pointer;

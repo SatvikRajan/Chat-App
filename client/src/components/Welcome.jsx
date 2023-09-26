@@ -4,14 +4,14 @@ export default function Welcome() {
   const [userName, setUserName] = useState([]);
   useEffect( () => {
     async function fetchData(){
-        setUserName(
-          await JSON.parse(
-            localStorage.getItem("chat-app-user")
-          ).username
-        );
-    }
-    fetchData();
+      const storedUser = localStorage.getItem("chat-app-user");
+      if (storedUser) {
+        setUserName(JSON.parse(storedUser).username);
+      }
+      }
+      fetchData();
   }, []);
+
   return (
     <Container>
       <h1>

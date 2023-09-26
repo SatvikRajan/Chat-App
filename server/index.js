@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const app = express()
 const userRoutes = require('../server/routes/UserRoutes')
 const messageRoute = require('./routes/MessagesRoute')
+const socket = require('socket.io')
 require("dotenv").config()
 
 app.use(cors())
@@ -17,6 +18,24 @@ async function main() {
 main() .catch((err)=>{
     console.log(err)
 })
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
+})
+const io = socket(server,{
+  cors:{origin:'http://localhost:3000',
+  credentials: true}
+})
+
+global.onlineUsers = new Map()
+io.on('connection',socket=>{
+  global.chatSocket = socket;
+  socket.on('add-user',(userId)=>{
+    onlineUsers.set(userId,socket.id)
+  })
+  socket.on("send-msg",(data)=>{
+    const sendUserSocket = onlineUsers.get(data.to)
+    if(sendUserSocket){
+      socket.to(sendUserSocket).emit('msg-recieve',data.message)
+    }
+  })
 })

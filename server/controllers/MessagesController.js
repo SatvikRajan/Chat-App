@@ -15,25 +15,25 @@ module.exports.addMessage = async (req,res,next) =>{
         next(ex)
     }
 }
-module.exports.getAllMessage = async (req,res,next) =>{
-    try{
-        const { from, to } = req.body;
-        const messages = await Messages.find({
-            users: {
-                $all: [from, to],
-            },
-        }).sort({ updatedAt: 1 });
-        
-        const projectedMessages = messages.map((msg) => {
+module.exports.getAllMessage = async (req, res, next) => {
+    try {
+      const { from, to } = req.body;
+      const messages = await Messages.find({
+        $or: [
+            { "users.from": from, "users.to": to },
+            { "users.from": to, "users.to": from },
+          ],
+      }).sort({ updatedAt: 1 });
+      const projectedMessages = messages.map((msg) => {
         return {
-            fromSelf: msg.sender.toString() === from,
-            message: msg.message.text,
+          fromSelf: msg.sender.toString() === from,
+          message: msg.message.text,
         };
-    });
-    res.json(projectedMessages);
-    console.log(messages)
+      });
+      res.json(projectedMessages);
+    } catch (ex) {
+        console.error("Error fetching messages:", ex);
+      next(ex);
     }
-    catch(ex){
-        next(ex)
-    }
-}
+  };
+  

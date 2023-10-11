@@ -22,7 +22,7 @@ const server = app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
 })
 const io = socket(server,{
-  cors:{origin:'http://localhost:3000',
+  cors:{origin:'https://vercel.com/satvikrajan/chat-app/BJusvcBUu6VfcEhY69TkPNQYrERv',
   credentials: true}
 })
 

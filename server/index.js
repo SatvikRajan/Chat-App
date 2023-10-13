@@ -12,7 +12,7 @@ app.use(express.json())
 app.use("/api/auth",userRoutes)
 app.use("/api/messages",messageRoute)
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/chat');
+    await mongoose.connect('https://vercel.com/satvikrajan/chat-app/BJusvcBUu6VfcEhY69TkPNQYrERv');
     console.log('DB connected succesfully')
 }
 main() .catch((err)=>{

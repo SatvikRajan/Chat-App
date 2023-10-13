@@ -16,7 +16,7 @@ const messageRoute = require('./routes/MessagesRoute');
 app.use('/api/auth', userRoutes);
 app.use('/api/messages', messageRoute);
 
-const dbUrl = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/chat';
+const dbUrl = 'https://chat-app-two-lake.vercel.app/';
 
 async function main() {
   try {
@@ -50,7 +50,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000', 
+    origin: 'https://chat-app-two-lake.vercel.app/', 
     credentials: true,
   },
 });

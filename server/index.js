@@ -25,7 +25,9 @@ const io = socket(server,{
   cors:{origin:'https://chat-app-two-lake.vercel.app/',
   credentials: true}
 })
-
+app.use(cors({
+  origin: 'https://chat-app-qjgx.vercel.app/'
+}))
 global.onlineUsers = new Map()
 io.on('connection',socket=>{
   global.chatSocket = socket;

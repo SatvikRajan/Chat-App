@@ -7,7 +7,12 @@ const messageRoute = require('./routes/MessagesRoute')
 const socket = require('socket.io')
 require("dotenv").config()
 
-app.use(cors())
+app.use(cors({
+    origin: ["https://chat-app-gamma-beryl.vercel.app"],
+    method: ["POST","GET"],
+    credentials: true
+}
+            ))
 app.use(express.json())
 app.use("/api/auth",userRoutes)
 app.use("/api/messages",messageRoute)

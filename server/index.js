@@ -27,12 +27,9 @@ const server = app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
 })
 const io = socket(server,{
-  cors:{origin:'https://chat-app-two-lake.vercel.app/',
+  cors:{origin:'https://chat-app-gamma-beryl.vercel.app','https://chat-app-k8gr.vercel.app'
   credentials: true}
 })
-app.use(cors({
-  origin: 'https://chat-app-qjgx.vercel.app/'
-}))
 global.onlineUsers = new Map()
 io.on('connection',socket=>{
   global.chatSocket = socket;

@@ -9,7 +9,7 @@ require("dotenv").config();
 
 app.use(cors({
     origin: ["https://chat-app-gamma-beryl.vercel.app", "https://chat-app-k8gr.vercel.app"],
-    methods: ["POST", "GET"],
+    methods: ["GET, POST, PUT, DELETE, OPTIONS"],
     credentials: true
 }));
 

@@ -17,8 +17,12 @@ app.use(express.json())
 app.use("/api/auth",userRoutes)
 app.use("/api/messages",messageRoute)
 async function main() {
-    await mongoose.connect('https://chat-app-two-lake.vercel.app/');
-    console.log('DB connected succesfully')
+  try {
+    await mongoose.connect('mongodb+srv://satvikrajan:Satvik2003@cluster0.lowxabl.mongodb.net/chat-app?retryWrites=true&w=majority');
+    console.log('DB connected successfully');
+  } catch (err) {
+    console.error('Database connection error:', err);
+  }
 }
 main() .catch((err)=>{
     console.log(err)

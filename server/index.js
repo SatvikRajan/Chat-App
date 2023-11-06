@@ -6,13 +6,7 @@ const userRoutes = require('../server/routes/UserRoutes');
 const messageRoute = require('./routes/MessagesRoute');
 const socket = require('socket.io');
 require("dotenv").config();
-
-app.use(cors({
-    origin: ["https://chat-app-gamma-beryl.vercel.app", "https://chat-app-k8gr.vercel.app"],
-    methods: ["GET, POST, PUT, DELETE, OPTIONS"],
-    credentials: true
-}));
-
+app.use(cors())
 app.use(express.json());
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messageRoute);
@@ -39,7 +33,7 @@ const server = app.listen(process.env.PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: ['https://chat-app-gamma-beryl.vercel.app', 'https://chat-app-k8gr.vercel.app'],
+        origin: ['https://chat-app-2cih.onrender.com'],
         credentials: true
     }
 });

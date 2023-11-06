@@ -3,10 +3,8 @@ import Regitser from './pages/Register'
 import Login from './pages/Login'
 import Chat from './pages/Chat'
 import SetAvatar from './components/SetAvatar'
-import { inject } from '@vercel/analytics';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 export default function App() {
-  inject();
   return (
     <BrowserRouter>
       <Routes>

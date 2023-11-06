@@ -1,4 +1,4 @@
-export const host = "https://chat-app-gamma-beryl.vercel.app";
+export const host = "https://chat-app-2cih.onrender.com";
 export const allUsersRoute = `${host}/api/auth/allusers`
 export const registerRoute = `${host}/api/auth/register`
 export const loginRoute = `${host}/api/auth/login`

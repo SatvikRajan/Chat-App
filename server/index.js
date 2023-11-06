@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const userRoutes = require('../server/routes/UserRoutes')
 const messageRoute = require('./routes/MessagesRoute')
 const express = require('express')
@@ -7,6 +8,20 @@ const app = express()
 const socket = require('socket.io')
 const PORT = 3001 
 require("dotenv").config()
+=======
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const app = express();
+const userRoutes = require('../server/routes/UserRoutes');
+const messageRoute = require('./routes/MessagesRoute');
+const socket = require('socket.io');
+require("dotenv").config();
+app.use(cors())
+app.use(express.json());
+app.use("/api/auth", userRoutes);
+app.use("/api/messages", messageRoute);
+>>>>>>> chat-app/main
 
 app.use(cors())
 app.use(express.json())
@@ -29,6 +44,7 @@ const server = app.listen(process.env.PORT || PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
 })
 
+<<<<<<< HEAD
 const io = socket(server,{
   cors:{origin:'https://chat-app-2cih.onrender.com',
   credentials: true}
@@ -43,6 +59,12 @@ io.on('connection',socket=>{
     const sendUserSocket = onlineUsers.get(data.to)
     if(sendUserSocket){
       socket.to(sendUserSocket).emit('msg-recieve',data.message)
+=======
+const io = socket(server, {
+    cors: {
+        origin: ['https://chat-app-2cih.onrender.com'],
+        credentials: true
+>>>>>>> chat-app/main
     }
   })
 })

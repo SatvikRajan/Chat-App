@@ -30,7 +30,7 @@ const server = app.listen(process.env.PORT || PORT, () => {
 })
 
 const io = socket(server,{
-  cors:{origin:'https://localhost:3000',
+  cors:{origin:'https://chat-app-2cih.onrender.com',
   credentials: true}
 })
 global.onlineUsers = new Map()
